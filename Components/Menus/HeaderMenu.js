@@ -89,8 +89,6 @@ import { Image } from "expo-image";
 import { AuthContext } from "../../Context/authContext";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
-// import GraddingAppBar from '../../Components/appbar/appbar'; // Adjust path as needed
-
 
 const HeaderMenu = () => {
   const [greeting, setGreeting] = useState("Hello");
@@ -112,13 +110,6 @@ const HeaderMenu = () => {
 
   return (
     <View style={styles.header}>
-      {/* <GraddingAppBar
-        backButton={false}
-        title="Home"
-        showActions={true}
-        centerTitle={true}
-        isBlur={true}
-      /> */}
       <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
         <Image
           style={styles.profile}

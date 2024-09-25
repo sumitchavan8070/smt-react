@@ -13,6 +13,44 @@ import { AntDesign } from "@expo/vector-icons";
 const MenuContainerComponent = () => {
   const navigation = useNavigation();
 
+
+  const arry =  [
+      {
+        "Key" : "Create Test", 
+        "value" : "", 
+        "route" : "CustomTestPage"
+      }, 
+
+      {
+        "Key" : "Take Test", 
+        "value" : "", 
+        "route" : "FilterExam"
+      }, 
+
+      {
+        "Key" : "Community", 
+        "value" : "", 
+        "route" : "CommonScreen"
+      }, 
+      {
+        "Key" : "Pricing", 
+        "value" : "", 
+        "route" : "Profile"
+      }, 
+
+      {
+        "Key" : "Feedback", 
+        "value" : "", 
+        "route" : "FeedbackForm"
+      }, 
+      {
+        "Key" : "History", 
+        "value" : "", 
+        "route" : "History"
+      }, 
+
+  ]
+
   const handleGroupPress = () => {
     navigation.navigate("CommonScreen");
   };
@@ -122,7 +160,7 @@ const MenuContainerComponent = () => {
             style={[styles.icon]}
             color={Color.primaryColor}
           />
-          <Text>Donate</Text>
+          <Text>Donate </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.iconBtn} onPress={handleSubClick}>
@@ -138,7 +176,7 @@ const MenuContainerComponent = () => {
           <AntDesign
             name="setting"
             style={[styles.icon]}
-            color={Color.primaryColor}
+            color={Color.primaryColor}  
           />
           <Text>Setting</Text>
         </TouchableOpacity>
@@ -146,6 +184,7 @@ const MenuContainerComponent = () => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   icon: { fontSize: 25 },

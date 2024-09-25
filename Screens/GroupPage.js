@@ -23,7 +23,7 @@
 // import LoadingAnimation from "../Components/Loader/loader";
 // import LottieView from "lottie-react-native";
 // import loadingAnimation from "../assets/group.json";
-// import socketServices from "../utils/constant/sockertService";
+// import socketServices from "../utils/sockertService";
 
 // const GroupPage = ({
 //   groups,
@@ -272,7 +272,7 @@ import { useGlobalRefresh } from "../Context/GlobalRefreshContext";
 import LoadingAnimation from "../Components/Loader/loader";
 import LottieView from "lottie-react-native";
 import loadingAnimation from "../assets/group.json";
-import socketServices from "../utils/constant/sockertService";
+import socketServices from "../utils/sockertService";
 import { AuthContext } from "../Context/authContext";
 
 const GroupPage = ({

@@ -4,14 +4,14 @@ import RazorpayCheckout from "react-native-razorpay";
 import { AuthContext } from "../../Context/authContext";
 import globalStrings from "../../utils/globalStrings";
 
+
 const [state, setState] = useContext(AuthContext);
 
 // Default configuration values
 const defaultConfig = {
   currency: "INR",
   description: "Thank you for your purchase",
-  image:
-    "https://i0.wp.com/examtipsindia.com/wp-content/uploads/2022/05/logo.png", // Default image URL
+  image: "https://i0.wp.com/examtipsindia.com/wp-content/uploads/2022/05/logo.png", 
   keyId: globalStrings.RAZOR_PAY_KEY, // Default Razorpay key ID
   companyName: "MeAdhikari",
   prefill: {

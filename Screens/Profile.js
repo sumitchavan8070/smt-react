@@ -36,6 +36,7 @@ import CloudinaryProfilePic from "../Components/Profile/CloudinaryProfilePic";
 import { Entypo } from "@expo/vector-icons";
 import BetaHomePageBanner from "../Components/BetaBanner/BetaHomePageBanner";
 import PricingPlanComponent from "../Components/Subscription/PricingPlanComponent";
+import ActiveSubscriptionPlan from "../Components/Subscription/ActiveSubscriptionPlan";
 
 const UserProfilePage = () => {
   const [state, setState] = useContext(AuthContext);
@@ -368,13 +369,7 @@ const UserProfilePage = () => {
                 />
               </TouchableOpacity>
             </View>
-            {/* 
-            <TouchableOpacity
-              onPress={handleBasicInfo}
-              style={styles.proccedIcon}
-            >
-              <Text style={styles.proccedText}>Save</Text>
-            </TouchableOpacity> */}
+
             <TouchableOpacity
               onPress={handleBasicInfo}
               style={styles.proccedIcon}
@@ -394,44 +389,6 @@ const UserProfilePage = () => {
       case "setting":
         return (
           <View>
-            {/* <View style={styles.settingCard}>
-              {subscriptionActive ? (
-                <View>
-                  <TouchableOpacity onPress={() => handleBackSubscription()}>
-                    <Ionicons name="arrow-back" size={24} color="black" />
-                  </TouchableOpacity>
-
-                  <Subscription></Subscription>
-                </View>
-              ) : (
-                <>
-                  <TouchableOpacity
-                    style={styles.btnModify}
-                    onPress={handleSubscriptionBtn}
-                  >
-                    <Text style={styles.txtModify}>MY SUBSCRIPTION</Text>
-                    <Image source={paymentImage} style={styles.subIcon} />
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    style={styles.btnModify}
-                    onPress={handleContactUs}
-                  >
-                    <Text style={styles.txtModify}>Contact Us</Text>
-                    <Image source={contactImage} style={styles.contactIcon} />
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    style={styles.btnModify}
-                    onPress={handleLogout}
-                  >
-                    <Text style={styles.txtModify}>LOGOUT</Text>
-                    <AntDesign name="logout" style={styles.logoutIcon} />
-                  </TouchableOpacity>
-                </>
-              )}
-            </View> */}
-
             <View style={styles.settingCard}>
               {subscriptionActive || contactActive || aboutActive ? (
                 <View>
@@ -441,7 +398,6 @@ const UserProfilePage = () => {
                         <Ionicons name="arrow-back" size={24} color="black" />
                       </TouchableOpacity>
 
-                      {/* <Text>Contact Us Content</Text> */}
                       <View>
                         <Image
                           source={aboutImage}
@@ -454,34 +410,12 @@ const UserProfilePage = () => {
                         />
                         <Text style={styles.contactHeading}>Contact us</Text>
 
-                        {/* <View
-                          style={{
-                            marginVertical: 20,
-                            flexDirection: "row",
-                            gap: 10,
-                            alignSelf: "center",
-                          }}
-                        >
-                          <Entypo name="email" size={18} color="black" />
-                          <Text
-                            style={{
-                              fontSize: 16,
-                            }}
-                          >
-                            shubhamdchavan1111@gmail.com
-                          </Text>
-                        </View> */}
                         <TouchableOpacity
                           onPress={() =>
                             Linking.openURL(
                               "mailto:shubhamdchavan1111@gmail.com"
                             )
                           }
-                          // onPress={() =>
-                          //   Linking.openURL(
-                          //     "mailto:shubhamdchavan1111@gmail.com?subject=Subject&body=Body"
-                          //   )
-                          // }
                         >
                           <View
                             style={{
@@ -581,7 +515,8 @@ const UserProfilePage = () => {
                         <Ionicons name="arrow-back" size={24} color="black" />
                       </TouchableOpacity>
 
-                      <Subscription />
+                      {/* <Subscription /> */}
+                      <PricingPlanComponent></PricingPlanComponent>
                     </>
                   )}
                 </View>
@@ -731,18 +666,18 @@ const UserProfilePage = () => {
     state.user.profilePic
   );
 
-  useFocusEffect(
-    React.useCallback(() => {
-      setDefaultProfilePic(state.user.profilePic);
-    }, [state.user.profilePic])
-  );
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     setDefaultProfilePic(state.user.profilePic);
+  //   }, [state.user.profilePic])
+  // );
 
   return (
     <View style={styles.profileScreen}>
       {loading && <LoadingAnimation visible={loading} loop={true} />}
 
       <ScrollView style={styles.scroll}>
-        <TouchableOpacity onPress={pickImage}>
+        {/* <TouchableOpacity onPress={pickImage}>
           {defaultProfilePic.includes("http") ? (
             <Image
               source={{ uri: defaultProfilePic }}
@@ -754,12 +689,13 @@ const UserProfilePage = () => {
               style={styles.profilePic}
             />
           )}
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
-        <BetaHomePageBanner username={"username"} />
+        <HeaderMenu />
+        <ActiveSubscriptionPlan></ActiveSubscriptionPlan>
+        <PricingPlanComponent></PricingPlanComponent>
 
         {/* <Subscription></Subscription> */}
-        <PricingPlanComponent></PricingPlanComponent>
 
         <View style={styles.infoContainer}>
           <View style={styles.tabsContainer}>
@@ -940,7 +876,7 @@ const styles = StyleSheet.create({
   },
 
   scroll: {
-    padding: 20,
+    // padding: 20,
   },
   profileScreen: {
     flex: 1,

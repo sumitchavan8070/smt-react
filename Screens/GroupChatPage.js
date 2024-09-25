@@ -17,7 +17,7 @@ import axios from "axios";
 import { io } from "socket.io-client"; // Import Socket.io client
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Bubble, GiftedChat } from "react-native-gifted-chat";
-import socketServices from "../utils/constant/sockertService";
+import socketServices from "../utils/sockertService";
 import ParsedText from "react-native-parsed-text";
 import { Feather } from "@expo/vector-icons";
 import CustomInputToolbar from "../Components/Group/CustomInputToolbar";

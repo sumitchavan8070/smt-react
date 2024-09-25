@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React, { useContext, useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Home from "../../Screens/home_modeule/view/Home";
+import Home from "../../Screens/Home";
 import Register from "../../Screens/auth/Register";
 import Login from "../../Screens/auth/Login";
 import { AuthContext } from "../../Context/authContext";
@@ -32,6 +32,7 @@ import Test from "../../Screens/Test";
 import FilterExam from "../../Screens/FilterExam";
 import DonationScreen from "../Subscription/DonationScreen";
 import SplashScreen from "../../Screens/auth/SplashScreen";
+import ChooseExamUpdated from "../../Screens/examDropdown/ChooseExamUpdated";
 
 const ScreenMenu = () => {
   //global state
@@ -51,12 +52,14 @@ const ScreenMenu = () => {
   //   title: "Update Available",
   //   message:
   //     "A new version of the app is available. Please update to the latest version.",
-  //   downloadUrl: "appDownloadUrl",
+  //   downloadUrl:
+  //     "https://play.google.com/store/apps/details?id=com.globalassignmenthelp&hl=en",
   //   playIcon: "",
   // };
 
   return (
-    <Stack.Navigator initialRouteName="Splash">
+    // <Stack.Navigator initialRouteName="Splash">
+    <Stack.Navigator initialRouteName={authenticatedUser ? "Home" : "Splash"}>
       {/* conditions to access toute */}
       {/* {authenticatedUser ? (<>true condition</>) :(<>false condition</>)} */}
 
@@ -105,9 +108,15 @@ const ScreenMenu = () => {
           />
 
           <Stack.Screen
+            name="ChooseExamUpdated"
+            component={ChooseExamUpdated}
+            options={{ headerShown: false, headerTitle: "CHOOSE EXAM" }}
+          />
+
+          <Stack.Screen
             name="FilterExam"
             component={FilterExam}
-            options={{ headerShown: true, headerTitle: "CHOOSE EXAM" }}
+            options={{ headerShown: false, headerTitle: "CHOOSE EXAM" }}
           />
 
           <Stack.Screen
@@ -125,7 +134,7 @@ const ScreenMenu = () => {
           <Stack.Screen
             name="SummaryPage"
             component={SummaryPage}
-            options={{ headerShown: true, headerTitle: "Test Summary" }}
+            options={{ headerShown: false, headerTitle: "Test Summary" }}
           />
 
           <Stack.Screen
@@ -143,7 +152,7 @@ const ScreenMenu = () => {
           <Stack.Screen
             name="CommonScreen"
             component={CommonScreen}
-            options={{ headerShown: true, headerTitle: "Explore" }}
+            options={{ headerShown: false, headerTitle: "Explore" }}
           />
 
           <Stack.Screen
@@ -182,13 +191,13 @@ const ScreenMenu = () => {
           <Stack.Screen
             name="QuestionPaperCardPage"
             component={QuestionPaperCardPage}
-            options={{ headerShown: true, headerTitle: "Papers" }}
+            options={{ headerShown: false, headerTitle: "Papers" }}
           />
 
           <Stack.Screen
             name="FeedbackForm"
             component={FeedbackForm}
-            options={{ headerShown: true, headerTitle: "Feedback" }}
+            options={{ headerShown: false, headerTitle: "Feedback" }}
           />
 
           <Stack.Screen
@@ -200,7 +209,6 @@ const ScreenMenu = () => {
             name="DonationScreen"
             component={DonationScreen}
             options={{ headerShown: false, headerTitle: "Donation" }}
-
           />
         </>
       ) : (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -10,6 +10,7 @@ import {
   Keyboard,
   Alert,
   Button,
+  useWindowDimensions,
 } from "react-native";
 import { Color } from "../GlobalStyles";
 import InputBox from "../Components/Forms/InputBox";
@@ -41,13 +42,20 @@ import Watermark from "../Components/BetaBanner/Watermark";
 import * as Print from "expo-print";
 import { shareAsync } from "expo-sharing";
 import { LinearGradient } from "expo-linear-gradient";
+import HTML from "react-native-render-html";
+import ChooseExamUpdated from "./examDropdown/ChooseExamUpdated";
+import FetchCatSubcatYearDropdown from "./examDropdown/FetchCatSubcatYearDropdown";
+import { AuthContext } from "../Context/authContext";
+import SubjectFilter from "../Components/FilterExam/SubjectFilter";
+import TopicFilter from "../Components/FilterExam/TopicFilter";
 
 const CustomTestPage = () => {
+  const [state, setState] = useContext(AuthContext);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [questionPaperData, setQuestionPaperData] = useState([]);
   const [addButtonTitle, setAddButtonTitle] = useState("");
   const [questionPaperName, setQuestionPaperName] = useState("");
-  const [preparedBy, setPreparedBy] = useState("");
+  const [preparedBy, setPreparedBy] = useState(state?.user?.username);
   const [activeTab, setActiveTab] = useState("Preview"); // State to track active tab
   const [subActiveTab, setSubActiveTab] = useState("exam"); // State to track active tab
   const [questionText, setQuestionText] = useState(""); // State for question input
@@ -59,13 +67,19 @@ const CustomTestPage = () => {
 
   const route = useRoute(); // Get the route object
   const { detailPageValue } = route.params || {}; // Destructure _id from params or use an empty object if params is undefined
-  const [selectedExamCategory, setSelectedExamCategory] = useState(
-    detailPageValue && detailPageValue._id ? detailPageValue._id : null // Check if detailPageValue and detailPageValue._id exist before accessing _id
-  );
 
-  const [selectedSubExamType, setSelectedSubExamType] = useState("");
-  const [selectedExamYear, setSelectedExamYear] = useState("");
-  const [yearDropIsVisible, setYearDropIsVisible] = useState(true);
+  //for updatedDrop
+  // const [selectedExamCategory, setSelectedExamCategory] = useState(
+  //   detailPageValue && detailPageValue._id ? detailPageValue._id : null // Check if detailPageValue and detailPageValue._id exist before accessing _id
+  // );
+  // const [selectedSubExamType, setSelectedSubExamType] = useState("");
+  // const [selectedExamYear, setSelectedExamYear] = useState("");
+  // const [yearDropIsVisible, setYearDropIsVisible] = useState(true);
+
+  const [catId, setCatId] = useState(null);
+  const [subCatId, setSubCatId] = useState(null);
+  const [yearId, setYearId] = useState(null);
+
   const [loading, setLoading] = useState(false);
 
   const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
@@ -342,19 +356,13 @@ const CustomTestPage = () => {
     }
   };
 
-  useEffect(() => {
-    knowCurrentUser();
-    if (!detailPageValue || !detailPageValue._id) {
-      setSelectedExamCategory(null); // Update selectedExamCategory to null if detailPageValue or detailPageValue._id is not found
-    }
-  }, [detailPageValue]);
+  // useEffect(() => {
+  //   knowCurrentUser();
+  //   if (!detailPageValue || !detailPageValue._id) {
+  //     setSelectedExamCategory(null); // Update selectedExamCategory to null if detailPageValue or detailPageValue._id is not found
+  //   }
+  // }, [detailPageValue]);
 
-  const knowCurrentUser = async () => {
-    const data = await AsyncStorage.getItem("@auth");
-    let loginData = JSON.parse(data);
-    let username = loginData.user.username;
-    setPreparedBy(username);
-  };
   const handleOptionSelect = (index) => {
     if (selectedOption !== options[index]) {
       setSelectedOption(options[index]);
@@ -433,17 +441,17 @@ const CustomTestPage = () => {
     // console.log("selectedSubExamType" + selectedSubExamType);
     // console.log("selectedExamYear" + selectedExamYear);
 
-    if (!selectedExamCategory) {
+    if (!catId) {
       alert("Please select an exam category");
       return;
     }
 
-    if (!selectedSubExamType) {
+    if (!subCatId) {
       alert("Please select an exam type");
       return;
     }
 
-    if (yearDropIsVisible && !selectedExamYear) {
+    if (!yearId) {
       alert("Please select an exam year");
       return;
     }
@@ -457,9 +465,9 @@ const CustomTestPage = () => {
       const response = await axios.post(
         "/question-papers/getQuestionPapersByFilter",
         {
-          catID: selectedExamCategory,
-          subCatID: selectedSubExamType,
-          QPYearID: selectedExamYear,
+          catID: catId,
+          subCatID: subCatId,
+          QPYearID: yearId,
         }
       );
       const data = response.data.data;
@@ -477,9 +485,82 @@ const CustomTestPage = () => {
     }
   };
 
+  // let questionNo = 0;
+  // const renderDraggableQuestion = ({ item, drag, index, isActive }) => {
+  //   questionNo++;
+  //   return (
+  //     <View key={item._id} style={styles.questionContainer}>
+  //       <View style={styles.iconConatiner}>
+  //         <TouchableOpacity
+  //           onPress={() => handleRemoveQuestion(item._id)}
+  //           style={styles.removeButtonButton}
+  //         >
+  //           <MaterialIcons
+  //             name="delete"
+  //             size={20}
+  //             style={[styles.icon, styles.removeButton]}
+  //           />
+  //         </TouchableOpacity>
+  //         <TouchableOpacity onLongPress={drag}>
+  //           <MaterialIcons
+  //             name="drag-indicator"
+  //             size={20}
+  //             style={[styles.icon, styles.dragIcon]}
+  //           />
+  //         </TouchableOpacity>
+  //       </View>
+  //       <View style={styles.question}>
+  //         <Text style={styles.questionNumber}>
+  //           {questionNo} {/* Display custom card number */}
+  //           {")"}
+  //         </Text>
+  //         <Text style={styles.questionText}>{item.question}</Text>
+  //       </View>
+  //       <View style={styles.optionsContainer}>
+  //         {item.options.map((option, optionIndex) => (
+  //           <Text key={optionIndex} style={styles.optionText}>
+  //             {`Option ${optionIndex + 1}: ${option}`}
+  //           </Text>
+  //         ))}
+  //       </View>
+  //       <Text style={styles.answerText}>
+  //         {`Correct Answer: ${item.answer}`}
+  //       </Text>
+  //       <View style={styles.borderLine} />
+  //     </View>
+  //   );
+  // };
+
   let questionNo = 0;
+
   const renderDraggableQuestion = ({ item, drag, index, isActive }) => {
     questionNo++;
+
+    // Utility function to check if the content is an image URL
+    const isImageUrl = (url) => {
+      return url?.match(/\.(jpeg|jpg|gif|png)$/) != null;
+    };
+
+    const getDriveImageUrl = (url) => {
+      const match = url.match(/drive.google.com\/file\/d\/(.+?)\/view/);
+      if (match) {
+        return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+      }
+      return url;
+    };
+
+    const replaceDriveUrlsInHtml = (html) => {
+      return html.replace(
+        /<img[^>]+src="(https:\/\/drive\.google\.com\/file\/d\/[^"]+)"/g,
+        (match, p1) => {
+          const accessibleUrl = getDriveImageUrl(p1);
+          return match.replace(p1, accessibleUrl);
+        }
+      );
+    };
+
+    const containsHTML = /<[a-z][\s\S]*>/i.test(item.question);
+
     return (
       <View key={item._id} style={styles.questionContainer}>
         <View style={styles.iconConatiner}>
@@ -501,20 +582,80 @@ const CustomTestPage = () => {
             />
           </TouchableOpacity>
         </View>
+
         <View style={styles.question}>
           <Text style={styles.questionNumber}>
-            {questionNo} {/* Display custom card number */}
+            {questionNo}
             {")"}
           </Text>
-          <Text style={styles.questionText}>{item.question}</Text>
+
+          {
+            // isImageUrl(item.question) ? (
+            //   <Image
+            //     source={{ uri: getDriveImageUrl(item.question) }}
+            //     style={{ width: "100%", height: 150 }}
+            //     resizeMode="contain"
+            //   />
+            // ) :
+            containsHTML ? (
+              <HTML
+                source={{ html: replaceDriveUrlsInHtml(item.question) }}
+                contentWidth={width}
+                tagsStyles={{
+                  table: {
+                    width: width * 0.6,
+                    margin: 15, // Adjust margin of table
+                    borderWidth: 0.2,
+                    borderColor: "#000",
+                    justifyContent: "center",
+                    alignContent: "center",
+                    alignItems: "center",
+                    alignSelf: "center",
+                  },
+                  td: {
+                    borderWidth: 0.2,
+                    borderColor: "#000",
+                    padding: 5,
+                    justifyContent: "center",
+                    alignContent: "center",
+                    alignItems: "center",
+                  },
+                  img: {
+                    width: width * 0.7,
+                    height: 150,
+                    resizeMode: "contain",
+                  },
+                }}
+              />
+            ) : (
+              <Text style={styles.questionText}>{item.question}</Text>
+            )
+          }
         </View>
+
         <View style={styles.optionsContainer}>
           {item.options.map((option, optionIndex) => (
-            <Text key={optionIndex} style={styles.optionText}>
-              {`Option ${optionIndex + 1}: ${option}`}
-            </Text>
+            <View key={optionIndex}>
+              {isImageUrl(option) ? (
+                <Image
+                  source={{ uri: getDriveImageUrl(option) }}
+                  style={{
+                    width: width * 0.7,
+                    height: 200,
+                    aspectRatio: 1.3,
+                    alignSelf: "center",
+                  }}
+                  resizeMode="contain"
+                />
+              ) : (
+                <Text style={styles.optionText}>
+                  {`Option ${optionIndex + 1}: ${option}`}
+                </Text>
+              )}
+            </View>
           ))}
         </View>
+
         <Text style={styles.answerText}>
           {`Correct Answer: ${item.answer}`}
         </Text>
@@ -745,6 +886,41 @@ const CustomTestPage = () => {
     setSelectedPrinter(printer);
   };
 
+  const isImageUrl = (text) => {
+    return text.startsWith("http://") || text.startsWith("https://");
+  };
+
+  const getDriveImageUrl = (url) => {
+    // console.log("url: " + url);
+    const match = url.match(/drive.google.com\/file\/d\/(.+?)\/view/);
+    if (match) {
+      return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+    }
+    return url;
+  };
+
+  const replaceDriveUrlsInHtml = (html) => {
+    return html.replace(
+      /<img[^>]+src="(https:\/\/drive\.google\.com\/file\/d\/[^"]+)"/g,
+      (match, p1) => {
+        const accessibleUrl = getDriveImageUrl(p1);
+        // console.log("url" + match.replace(p1, accessibleUrl));
+
+        return match.replace(p1, accessibleUrl);
+      }
+    );
+  };
+
+  // // const isImageUrl = (url) => {
+  // //   return url?.match(/\.(jpeg|jpg|gif|png)$/) != null;
+  // // };
+  const { width } = useWindowDimensions(); // Destructure width from useWindowDimensions()
+  const containsHTMLForModal = (text) => {
+    return /<[a-z][\s\S]*>/i.test(text);
+  };
+
+  // return htmlContent?.includes("<table>");
+
   return (
     <View style={styles.container}>
       {/* =========================================================================== Question Preview Model ============================================ */}
@@ -786,7 +962,7 @@ const CustomTestPage = () => {
               </Text>
             </Text>
             <View style={styles.borderLine} />
-            {selectedQuestions.map((question, index) => (
+            {/* {selectedQuestions.map((question, index) => (
               <View key={question.id} style={styles.questionContainer}>
                 <Watermark text="मी अधिकारी" />
 
@@ -801,6 +977,92 @@ const CustomTestPage = () => {
                     </Text>
                   ))}
                 </View>
+                <Text style={styles.answerText}>
+                  {`Correct Answer: ${question.answer}`}
+                </Text>
+
+                <View style={styles.borderLine} />
+              </View>
+            ))} */}
+
+            {selectedQuestions.map((question, index) => (
+              <View key={question.id} style={styles.questionContainer}>
+                <Watermark text="मी अधिकारी" />
+
+                <View style={styles.question}>
+                  <Text style={styles.questionNumber}>{index + 1}</Text>
+
+                  {
+                    // isImageUrl(question.question) ? (
+                    //   <Image
+                    //     source={{ uri: getDriveImageUrl(question.question) }}
+                    //     style={{ width: "100%", height: 150 }}
+                    //     resizeMode="contain"
+                    //   />
+                    // ) :
+                    containsHTMLForModal(question.question) ? (
+                      <HTML
+                        source={{
+                          html: replaceDriveUrlsInHtml(question.question),
+                        }}
+                        contentWidth={width}
+                        tagsStyles={{
+                          table: {
+                            width: width * 0.6,
+                            margin: 15, // Adjust margin of table
+                            borderWidth: 0.2,
+                            borderColor: "#000",
+                            justifyContent: "center",
+                            alignContent: "center",
+                            alignItems: "center",
+                            alignSelf: "center",
+                          },
+                          td: {
+                            borderWidth: 0.2,
+                            borderColor: "#000",
+                            padding: 5,
+                            justifyContent: "center",
+                            alignContent: "center",
+                            alignItems: "center",
+                          },
+                          img: {
+                            width: width * 0.7,
+                            height: 150,
+                            resizeMode: "contain",
+                          },
+                        }}
+                      />
+                    ) : (
+                      <Text style={styles.questionText}>
+                        {question.question}
+                      </Text>
+                    )
+                  }
+                </View>
+
+                <View style={styles.optionsContainer}>
+                  {question.options.map((option, optionIndex) => (
+                    <View key={optionIndex}>
+                      {isImageUrl(option) ? (
+                        <Image
+                          source={{ uri: getDriveImageUrl(option) }}
+                          style={{
+                            width: width * 0.7,
+                            height: 200,
+                            aspectRatio: 1.3,
+                            alignSelf: "center",
+                          }}
+                          resizeMode="contain"
+                        />
+                      ) : (
+                        <Text style={styles.optionText}>
+                          {`Option${optionIndex + 1}: ${option}`}
+                        </Text>
+                      )}
+                    </View>
+                  ))}
+                </View>
+
                 <Text style={styles.answerText}>
                   {`Correct Answer: ${question.answer}`}
                 </Text>
@@ -1344,6 +1606,10 @@ const CustomTestPage = () => {
                     //   ? "Added"
                     //   : "Add Question";
 
+                    const containsHTML = /<[a-z][\s\S]*>/i.test(
+                      question.question
+                    );
+
                     const addButtonTitle = selectedQuestions.some(
                       (q) => q._id === question._id
                     ) ? (
@@ -1361,6 +1627,42 @@ const CustomTestPage = () => {
                       <Text style={styles.addQuestionButton}>Add Question</Text>
                     );
 
+                    // return (
+                    //   <View key={question._id} style={styles.questionContainer}>
+                    //     <TouchableOpacity
+                    //       onPress={() => handleAddQuestion(question._id)}
+                    //       style={styles.addQuestionButtonButton}
+                    //     >
+                    //       <Text style={styles.addQuestionButton}>
+                    //         {addButtonTitle}
+                    //       </Text>
+                    //     </TouchableOpacity>
+                    //     <View style={styles.question}>
+                    //       <Text style={styles.questionNumber}>{index + 1}</Text>
+                    //       <Text style={styles.questionText}>
+                    //         {question.question}
+                    //       </Text>
+                    //     </View>
+                    //     <View style={styles.optionsContainer}>
+                    //       <Text
+                    //         style={styles.optionText}
+                    //       >{`Option1: ${question.option1}`}</Text>
+                    //       <Text
+                    //         style={styles.optionText}
+                    //       >{`Option2: ${question.option2}`}</Text>
+                    //       <Text
+                    //         style={styles.optionText}
+                    //       >{`Option3: ${question.option3}`}</Text>
+                    //       <Text
+                    //         style={styles.optionText}
+                    //       >{`Option4: ${question.option4}`}</Text>
+                    //     </View>
+
+                    //     <Text style={styles.answerText}>
+                    //       {`Correct Answer: ${question.answer}`}
+                    //     </Text>
+                    //     <View style={styles.borderLine} />
+                    //   </View>
                     return (
                       <View key={question._id} style={styles.questionContainer}>
                         <TouchableOpacity
@@ -1371,30 +1673,90 @@ const CustomTestPage = () => {
                             {addButtonTitle}
                           </Text>
                         </TouchableOpacity>
+
                         <View style={styles.question}>
                           <Text style={styles.questionNumber}>{index + 1}</Text>
-                          <Text style={styles.questionText}>
-                            {question.question}
-                          </Text>
-                        </View>
-                        <View style={styles.optionsContainer}>
-                          <Text
-                            style={styles.optionText}
-                          >{`Option1: ${question.option1}`}</Text>
-                          <Text
-                            style={styles.optionText}
-                          >{`Option2: ${question.option2}`}</Text>
-                          <Text
-                            style={styles.optionText}
-                          >{`Option3: ${question.option3}`}</Text>
-                          <Text
-                            style={styles.optionText}
-                          >{`Option4: ${question.option4}`}</Text>
+
+                          {
+                            // isImageUrl(question.question) ? (
+                            //   <Image
+                            //     source={{
+                            //       uri: getDriveImageUrl(question.question),
+                            //     }}
+                            //     style={{ width: "100%", height: 150 }}
+                            //     resizeMode="contain"
+                            //   />
+                            // ) :
+                            containsHTML ? (
+                              <HTML
+                                source={{
+                                  html: replaceDriveUrlsInHtml(
+                                    question.question
+                                  ),
+                                }}
+                                contentWidth={width}
+                                tagsStyles={{
+                                  table: {
+                                    width: width * 0.6,
+                                    margin: 15, // Adjust margin of table
+                                    borderWidth: 0.2,
+                                    borderColor: "#000",
+                                    justifyContent: "center",
+                                    alignContent: "center",
+                                    alignItems: "center",
+                                    alignSelf: "center",
+                                  },
+                                  td: {
+                                    borderWidth: 0.2,
+                                    borderColor: "#000",
+                                    padding: 5,
+                                    justifyContent: "center",
+                                    alignContent: "center",
+                                    alignItems: "center",
+                                  },
+                                  img: {
+                                    width: width * 0.7,
+                                    height: 150,
+                                    resizeMode: "contain",
+                                  },
+                                }}
+                              />
+                            ) : (
+                              <Text style={styles.questionText}>
+                                {question.question}
+                              </Text>
+                            )
+                          }
                         </View>
 
-                        <Text style={styles.answerText}>
-                          {`Correct Answer: ${question.answer}`}
-                        </Text>
+                        <View style={styles.optionsContainer}>
+                          {[1, 2, 3, 4].map((optionIndex) => (
+                            <Text key={optionIndex} style={styles.optionText}>
+                              {isImageUrl(question[`option${optionIndex}`]) ? (
+                                <Image
+                                  source={{
+                                    uri: getDriveImageUrl(
+                                      question[`option${optionIndex}`]
+                                    ),
+                                  }}
+                                  style={{
+                                    width: width * 0.7,
+                                    height: 200,
+                                    aspectRatio: 1.3,
+                                    alignSelf: "center",
+                                  }}
+                                  resizeMode="contain"
+                                />
+                              ) : (
+                                `Option${optionIndex}: ${question[`option${optionIndex}`]}`
+                              )}
+                            </Text>
+                          ))}
+                        </View>
+
+                        <Text
+                          style={styles.answerText}
+                        >{`Correct Answer: ${question.answer}`}</Text>
                         <View style={styles.borderLine} />
                       </View>
                     );
@@ -1406,7 +1768,7 @@ const CustomTestPage = () => {
 
             {subActiveTab === "exam" && (
               <ScrollView style={styles.createTestContainer}>
-                <CreateTestPage
+                {/* <CreateTestPage
                   selectedExamCategory={selectedExamCategory}
                   selectedSubExamType={selectedSubExamType}
                   selectedExamYear={selectedExamYear}
@@ -1425,26 +1787,33 @@ const CustomTestPage = () => {
                   buttonTitle={loading ? "Loading..." : "Get Questions"}
                   handleOnSubmit={onSubmitGetQuestionsExamSection}
                   disabled={loading}
+                /> */}
+                {/* <ChooseExamUpdated></ChooseExamUpdated> */}
+                <FetchCatSubcatYearDropdown
+                  setSelectedCatId={setCatId}
+                  setSelectedSubCatId={setSubCatId}
+                  setSelectedYearId={setYearId}
+                  creatingTest={true}
+                ></FetchCatSubcatYearDropdown>
+                <PrimaryButton
+                  styles={styles.button}
+                  buttonTitle={loading ? "Loading..." : "Get Questions"}
+                  handleOnSubmit={onSubmitGetQuestionsExamSection}
+                  disabled={loading}
                 />
               </ScrollView>
             )}
 
             {subActiveTab === "subject" && (
-              <TouchableOpacity
-                onPress={handleSearch}
-                style={styles.searchButton}
-              >
-                <Text style={styles.searchButtonText}>Search Subject</Text>
-              </TouchableOpacity>
+              <View>
+                <SubjectFilter></SubjectFilter>
+              </View>
             )}
 
             {subActiveTab === "topic" && (
-              <TouchableOpacity
-                onPress={handleSearch}
-                style={styles.searchButton}
-              >
-                <Text style={styles.searchButtonText}>Search Topic</Text>
-              </TouchableOpacity>
+              <View>
+                <TopicFilter></TopicFilter>
+              </View>
             )}
           </View>
         )}
@@ -1657,6 +2026,7 @@ const styles = StyleSheet.create({
   addButtonText: {
     color: Color.colorWhite,
     fontWeight: "bold",
+    // marginVertical: 10,
   },
 
   modalContainer: {
@@ -1776,6 +2146,8 @@ const styles = StyleSheet.create({
   question: {
     flexDirection: "row",
     gap: 10,
+    marginHorizontal: 2,
+    paddingHorizontal: 2,
   },
 
   questionNumber: {
@@ -1786,6 +2158,7 @@ const styles = StyleSheet.create({
   questionText: {
     fontWeight: "bold",
     marginBottom: 10,
+    marginHorizontal: 2,
   },
   option: {
     marginBottom: 5,
@@ -1827,6 +2200,7 @@ const styles = StyleSheet.create({
   addQuestionButton: {
     color: Color.primaryColor,
     fontWeight: "bold",
+    marginVertical: 20,
   },
 
   addedQuestionButton: {

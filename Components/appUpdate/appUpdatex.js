@@ -3,7 +3,6 @@
 
 // // import { checkUpdate, startUpdate, completeUpdate } from "react-native-update"; // Hypothetical package
 // // import * as Linking from "expo-linking";
-// // import * as Updates from "expo-updates"; // For in-app updates, particularly on iOS
 
 // const appUpdateFunction = (appUpdate) => {
 //   console.log(
@@ -134,7 +133,6 @@ import { Platform, View, Text, Button } from "react-native";
 import DeviceInfo from "react-native-device-info";
 import * as Linking from "expo-linking"; // Uncomment if using Expo
 import UpdatePopup from "./popup/UpdatePopup";
-// import * as Updates from "expo-updates"; // For in-app updates, particularly on iOS
 
 // const AppUpdateComponent = ({ appUpdate, onClose, launchStore }) => {
 //   return (
