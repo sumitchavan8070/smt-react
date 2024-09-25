@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../../Screens/Home";
 import Register from "../../Screens/auth/Register";
-import Login from "../../Screens/auth/Login";
+import Login from "../../lib/dashboard_module/view/Login";
 import { AuthContext } from "../../Context/authContext";
 import Blog from "../../Screens/Blog";
 import History from "../../Screens/History";

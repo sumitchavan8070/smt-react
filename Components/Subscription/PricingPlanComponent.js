@@ -15,7 +15,7 @@ import {
 import RazorpayCheckout from "react-native-razorpay";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome } from "@expo/vector-icons"; // Import FontAwesome for icons
-import globalStrings from "../../utils/globalStrings";
+import globalStrings from "../../utils/constants/globalStrings";
 import axios from "axios";
 import Color from "../../GlobalStyles";
 import { AuthContext } from "../../Context/authContext";

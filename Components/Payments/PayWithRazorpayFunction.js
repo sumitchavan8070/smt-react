@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import RazorpayCheckout from "react-native-razorpay";
 import { AuthContext } from "../../Context/authContext";
-import globalStrings from "../../utils/globalStrings";
+import globalStrings from "../../utils/constants/globalStrings";
 
 // const [paymentSuccess, setPaymentSuccess] = useState(false);
 

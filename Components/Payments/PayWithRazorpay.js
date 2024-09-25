@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import RazorpayCheckout from "react-native-razorpay";
 import { AuthContext } from "../../Context/authContext";
-import globalStrings from "../../utils/globalStrings";
+import globalStrings from "../../utils/constants/globalStrings";
 
 
 const [state, setState] = useContext(AuthContext);

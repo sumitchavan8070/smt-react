@@ -273,7 +273,7 @@ import * as Animatable from "react-native-animatable";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "../../Context/authContext";
-import { requestUserPermission } from "../../utils/notificationService";
+import { requestUserPermission } from "../../utils/constants/notificationService";
 import LoadingAnimation from "../../Components/Loader/loader";
 
 const SignInScreen = ({ navigation }) => {

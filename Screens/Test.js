@@ -14,7 +14,7 @@ import axios from "axios";
 import { io } from "socket.io-client";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Bubble, GiftedChat } from "react-native-gifted-chat";
-import socketServices from "../utils/sockertService";
+import socketServices from "../utils/constants/sockertService";
 import { Feather } from "@expo/vector-icons";
 
 const GroupChatPage = ({ route }) => {

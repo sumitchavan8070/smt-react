@@ -9,6 +9,7 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { Color } from "../../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
+import { Appbar } from "react-native-paper";
 
 const MenuContainerComponent = () => {
   const navigation = useNavigation();
@@ -85,6 +86,7 @@ const MenuContainerComponent = () => {
   };
 
   return (
+  
     <View style={styles.main}>
       {/* <Text>Menu</Text> */}
 

@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-import globalStrings from "../utils/globalStrings";
+import globalStrings from "../constants/globalStrings";
 
 const SOCKET_URL = globalStrings.SOCKET_URL;
 
