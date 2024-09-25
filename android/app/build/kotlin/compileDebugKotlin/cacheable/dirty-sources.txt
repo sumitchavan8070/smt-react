@@ -1,2 +1,0 @@
-/home/user/Documents/projects/React/myself-admin/android/app/src/main/java/com/myprojectname/MainApplication.kt
-/home/user/Documents/projects/React/myself-admin/android/app/src/main/java/com/myprojectname/MainActivity.kt

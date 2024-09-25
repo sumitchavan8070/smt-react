@@ -1,4 +1,4 @@
-rootProject.name = 'MyProjectName'
+rootProject.name = 'meadhikari'
 
 dependencyResolutionManagement {
   versionCatalogs {
