@@ -1,16 +1,33 @@
 import axios from 'axios';
 import globalStrings from '../constants/globalStrings';
-
+import crashlytics from '@react-native-firebase/crashlytics';
 
 axios.defaults.baseURL = globalStrings.BASE_URL;
 
+const updateCrashlytics = async (error, apiEndPoint, requestData = null) => {
+  if (!__DEV__) {  
+    try {
+
+      await crashlytics().recordError(new Error(`API ERROR: ${apiEndPoint}`), error.stack);
+
+      await crashlytics().setAttributes({
+        api_end_point: apiEndPoint,
+        request_method: requestData ? 'POST' : 'GET',
+      });
+
+      if (requestData) {
+        await crashlytics().setCustomKey("request_data", JSON.stringify(requestData));
+      }
+    } catch (crashlyticsError) {
+      console.error('Failed to log error in Crashlytics:', crashlyticsError);
+    }
+  }
+};
+
 
 async function getRequest({ apiEndPoint }) {
-
-
   console.log(`------------ ${apiEndPoint} getRequest Start ------------`);
   try {
-
     const response = await axios.get(apiEndPoint);
 
     console.log(`------------ ${apiEndPoint} getRequest End ------------`);
@@ -22,14 +39,18 @@ async function getRequest({ apiEndPoint }) {
     return response;
   } catch (error) {
     console.error('Error in getRequest:', error);
-    throw error;
+    
+    await updateCrashlytics(error, apiEndPoint);
+
+    throw error;  
   }
 }
 
-async function postRequest({ apiEndPoint, postData }) {
-  try {
-    console.log(`~~~~~~~~~~~~~~~~~~~~ ${apiEndPoint} postRequest Start  ${postData}  ~~~~~~~~~~~~~~~~~~~~`);
 
+
+async function postRequest({ apiEndPoint, postData }) {
+  console.log(`------------------------ ${apiEndPoint} postRequest Start  ${postData}  ------------------------`);
+  try {
     const response = await axios.post(apiEndPoint, postData);
 
     if (response.status !== 200) {
@@ -41,7 +62,10 @@ async function postRequest({ apiEndPoint, postData }) {
     return response;
   } catch (error) {
     console.error('Error in postRequest:', error);
-    throw error;
+
+    await updateCrashlytics(error, apiEndPoint, postData);
+
+    throw error;  
   }
 }
 
