@@ -17,7 +17,8 @@ import { Color } from "../GlobalStyles";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AddMemberModel from "../Components/Group/AddMemberModel";
-import * as Clipboard from "expo-clipboard";
+import Clipboard from '@react-native-clipboard/clipboard';
+
 import { LinearGradient } from "expo-linear-gradient";
 import { Entypo } from "@expo/vector-icons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
@@ -228,7 +229,7 @@ const GroupDetailPage = ({ route }) => {
   };
 
   const copyToClipboard = async () => {
-    await Clipboard.setStringAsync(groupInfo.GroupShareId);
+    await Clipboard.setString(groupInfo.GroupShareId);
     alert(
       `Your shareable Group ID: ${groupInfo.GroupShareId} has been copied to your clipboard.`
     );

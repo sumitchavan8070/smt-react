@@ -4,11 +4,11 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Image
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Border, Color, FontSize } from "../../GlobalStyles";
-import { Image } from "expo-image";
 
 const ExamCard = ({ item }) => {
   const navigation = useNavigation();
@@ -25,6 +25,7 @@ const ExamCard = ({ item }) => {
         onPress={() => handleMoreButton(item._id)}
       >
         <View style={[styles.card]}>
+        
           <Image
             style={[styles.upperCardBlock, styles.cardPosition]}
             contentFit="contain"

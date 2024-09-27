@@ -11,7 +11,8 @@ import {
 } from "react-native";
 import { FontAwesome, FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { Color } from "../../GlobalStyles";
-import * as Clipboard from "expo-clipboard";
+import Clipboard from '@react-native-clipboard/clipboard';
+
 import loadingAnimation from "../../assets/share.json";
 import LottieView from "lottie-react-native";
 import Entypo from "@expo/vector-icons/Entypo";
@@ -50,7 +51,7 @@ const CustomTestAlert = ({
   };
 
   const copyToClipboard = async () => {
-    await Clipboard.setStringAsync(testId);
+    await Clipboard.setString(testId);
     alert(
       `Your shareable Test ID: ${testId} has been copied to your clipboard.`
     );

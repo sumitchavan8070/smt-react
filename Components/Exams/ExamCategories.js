@@ -4,6 +4,8 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Image
+
 } from "react-native";
 import React from "react";
 import { examData } from "../../data/CategoriesData";
