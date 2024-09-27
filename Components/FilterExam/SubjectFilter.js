@@ -1,12 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import LottieView from "lottie-react-native";
-import loadingAnimation from "../../assets/yogaboy.json";
+import AssetPath from "../../lib/utility/constants/asset_path";
 const SubjectFilter = () => {
   return (
     <View style={styles.container}>
       <LottieView
-        source={loadingAnimation}
+        source={AssetPath.yogaboy}
         autoPlay
         loop={true}
         style={styles.animation}

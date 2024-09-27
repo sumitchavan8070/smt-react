@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 import LottieView from "lottie-react-native";
-import loadingAnimation from "../../assets/ins.json";
+import AssetPath from "../../lib/utility/constants/asset_path";
 import { Color } from "../../GlobalStyles";
 
 import { SimpleLineIcons } from "@expo/vector-icons";
@@ -144,7 +144,7 @@ const ChooseExamAlertSuccess = ({
         ) : (
           <>
             <LottieView
-              source={loadingAnimation} // Replace with your animation JSON file
+              source={AssetPath.ins} // Replace with your animation JSON file
               autoPlay
               loop={true}
               style={styles.animation}

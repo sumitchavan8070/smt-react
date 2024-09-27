@@ -1,13 +1,12 @@
-import { View, Text } from "react-native";
 import React, { useContext, useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Home from "../../Screens/Home";
-import Register from "../../Screens/auth/Register";
-import Login from "../../lib/dashboard_module/view/Login";
+import Home from "../../lib/dashboard_module/view/Home";
+import Register from "../../lib/authentication_module/view/sign_in_view";
+import Login from "../../lib/authentication_module/view/login_view";
 import { AuthContext } from "../../Context/authContext";
-import Blog from "../../Screens/Blog";
+import Blog from "../../lib/dashboard_module/view/Blog";
 import History from "../../Screens/History";
-import Profile from "../../Screens/Profile";
+import Profile from "../../lib/dashboard_module/view/Profile";
 import ExamDetailPage from "../../Screens/ExamDetailPage";
 import ViewAll from "../../Screens/ViewAll";
 import ChooseExam from "../../Screens/ChooseExam";
@@ -16,22 +15,17 @@ import TestResult from "../../Screens/TestResult";
 import SummaryPage from "../../Screens/SummaryPage";
 import CreateTestPage from "../../Screens/CreateTestPage";
 import InstructionPage from "../../Screens/InstructionPage";
-import Group from "../../Screens/GroupPage";
 import GroupPage from "../../Screens/GroupPage";
-import LeaderboardPage from "../../Screens/LeaderboardPage";
 import GroupChatPage from "../../Screens/GroupChatPage";
-import GroupDetailPage from "../../Screens/GroupDetailPage";
 import CommonScreen from "../../Screens/CommonScreen";
 import CustomTestPage from "../../Screens/CustomTest";
-import JoinBox from "../JoinBox/JoinBox";
 import YearCardsPage from "../QuestionPaperSection/YearCardsPage";
 import QuestionPaperCardPage from "../QuestionPaperSection/QuestionPaperCardPage";
 import FeedbackForm from "../Feedback/FeedbackForm";
-import test from "../../Screens/Test";
 import Test from "../../Screens/Test";
 import FilterExam from "../../Screens/FilterExam";
 import DonationScreen from "../Subscription/DonationScreen";
-import SplashScreen from "../../Screens/auth/SplashScreen";
+import SplashScreen from "../../lib/authentication_module/view/feture_view";
 import ChooseExamUpdated from "../../Screens/examDropdown/ChooseExamUpdated";
 
 const ScreenMenu = () => {
@@ -152,11 +146,11 @@ const ScreenMenu = () => {
             component={GroupChatPage}
             options={{ headerShown: false, headerTitle: "CommunityChatPage" }}
           />
-          <Stack.Screen
+          {/* <Stack.Screen
             name="GroupDetailPage"
             component={GroupDetailPage}
             options={{ headerShown: false, headerTitle: "Community" }}
-          />
+          /> */}
 
           <Stack.Screen
             name="CustomTestPage"

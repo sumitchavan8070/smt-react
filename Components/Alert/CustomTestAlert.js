@@ -12,9 +12,8 @@ import {
 import { FontAwesome, FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { Color } from "../../GlobalStyles";
 import * as Clipboard from "expo-clipboard";
-import loadingAnimation from "../../assets/share.json";
+import AssetPath from "../../lib/utility/constants/asset_path";
 import LottieView from "lottie-react-native";
-import Entypo from "@expo/vector-icons/Entypo";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
@@ -168,7 +167,7 @@ const CustomTestAlert = ({
         </TouchableOpacity>
 
         <LottieView
-          source={loadingAnimation} // Replace with your animation JSON file
+          source={AssetPath.share} // Replace with your animation JSON file
           autoPlay
           loop={true}
           style={styles.animation}

@@ -10,7 +10,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons, MaterialIcons, FontAwesome } from "@expo/vector-icons"; // Example of using Ionicons for icons
 import { Color } from "../../GlobalStyles";
-import loadingAnimation from "../../assets/share.json";
+import AssetPath from "../../lib/utility/constants/asset_path";
 import LottieView from "lottie-react-native";
 
 const GroupSelectionModal = ({
@@ -75,7 +75,7 @@ const GroupSelectionModal = ({
       <View style={styles.modalContainer}>
         <View style={styles.popupContainer}>
           <LottieView
-            source={loadingAnimation} // Replace with your animation JSON file
+            source={AssetPath.share} // Replace with your animation JSON file
             autoPlay
             loop={true}
             style={styles.animation}

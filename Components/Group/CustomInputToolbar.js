@@ -20,7 +20,7 @@ import {
   SimpleLineIcons,
 } from "@expo/vector-icons";
 
-import loadingAnimation from "../../assets/share.json";
+import AssetPath from "../../lib/utility/constants/asset_path";
 import LottieView from "lottie-react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -126,7 +126,7 @@ const CustomInputToolbar = ({
             </TouchableOpacity>
 
             <LottieView
-              source={loadingAnimation} // Replace with your animation JSON file
+              source={AssetPath.share} // Replace with your animation JSON file
               autoPlay
               loop={true}
               style={styles.animation}

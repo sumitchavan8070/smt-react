@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Border, Color, FontSize } from "../../GlobalStyles";
+import { Border, Color } from "../../GlobalStyles";
 import { Image } from "expo-image";
 
 const ExamCard = ({ item }) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import LottieView from "lottie-react-native";
-import loadingAnimation from "../../assets/review.json";
+import AssetPath from "../../lib/utility/constants/asset_path";
 import { Color } from "../../GlobalStyles";
 
 const PostAlert = ({ isVisible, onClose, message }) => {
@@ -11,7 +11,7 @@ const PostAlert = ({ isVisible, onClose, message }) => {
     <View style={styles.container}>
       <View style={styles.card}>
         <LottieView
-          source={loadingAnimation} // Replace with your animation JSON file
+          source={AssetPath.review} 
           autoPlay
           loop={true}
           style={styles.animation}
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     padding: 20,
     justifyContent: "center",
     alignItems: "center",
-    elevation: 5, // Add elevation for Android shadow
+    elevation: 5, 
   },
   message: {
     fontSize: 20,

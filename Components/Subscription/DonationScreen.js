@@ -13,8 +13,8 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { handlePaymentWithRazorPay } from "../Payments/PayWithRazorpayFunction";
 import { AuthContext } from "../../Context/authContext";
 import LottieView from "lottie-react-native";
-import loadingAnimation from "../../assets/donationfile.json";
 import RazorpayPaymentAlert from "../Alert/RazorpayPaymentAlert";
+import AssetPath from "../../lib/utility/constants/asset_path";
 import axios from "axios";
 
 const DonationScreen = () => {
@@ -28,18 +28,6 @@ const DonationScreen = () => {
   const [isSuccess, setIsSuccess] = useState(true);
   const [donationAmountFinal, setDonationAmountFinal] = useState(null);
 
-  // const handlePaymentSuccess = (data) => {
-  //   // setAlertMessage("Payment Successful! Thank you for your purchase." + data);
-  //   setIsSuccess(true);
-
-  //   setAlertMessage(
-  //     "Your generosity helps us make a difference. Thank you for your support!"
-  //   );
-
-  //   setAlertVisible(true);
-  // };
-
-  // Ensure you have axios installed and imported
 
   const handlePaymentSuccess = async (data, subscriptionPlanID, amount) => {
     setIsSuccess(true);
@@ -116,7 +104,7 @@ const DonationScreen = () => {
           style={styles.image}
         /> */}
         <LottieView
-          source={loadingAnimation} // Replace with your animation JSON file
+          source={AssetPath.donationfile} // Replace with your animation JSON file
           autoPlay
           loop={true}
           style={styles.image}

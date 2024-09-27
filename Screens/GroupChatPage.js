@@ -3,22 +3,15 @@ import {
   View,
   Text,
   StyleSheet,
-  FlatList,
-  TextInput,
   TouchableOpacity,
-  Image,
-  Alert,
   ImageBackground,
 } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons"; // Import FontAwesome 5
+import { FontAwesome5 } from "@expo/vector-icons"; 
 import { Color } from "../GlobalStyles";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import axios from "axios";
-import { io } from "socket.io-client"; // Import Socket.io client
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Bubble, GiftedChat } from "react-native-gifted-chat";
-import socketServices from "../utils/constants/sockertService";
-import ParsedText from "react-native-parsed-text";
+import socketServices from "../lib/utility/constants/sockertService";
 import { Feather } from "@expo/vector-icons";
 import CustomInputToolbar from "../Components/Group/CustomInputToolbar";
 import LoadingAnimation from "../Components/Loader/loader";

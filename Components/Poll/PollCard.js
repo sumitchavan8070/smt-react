@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import LottieView from "lottie-react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import confettiAnimation from "../../assets/confitee.json";
+import AssetPath from "../../lib/utility/constants/asset_path";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Image } from "expo-image";
@@ -207,7 +207,7 @@ const PollCard = ({ poll, postId, approvedPolls }) => {
             <Text>Total Votes: {totalVotes}</Text>
           </View>
           <LottieView
-            source={confettiAnimation}
+            source={AssetPath.confettiAnimation}
             autoPlay
             loop={false}
             style={styles.animation}

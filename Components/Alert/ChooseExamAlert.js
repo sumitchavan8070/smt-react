@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import LottieView from "lottie-react-native";
-import loadingAnimation from "../../assets/ins.json";
+import AssetPath from "../../lib/utility/constants/asset_path";
 import { Color } from "../../GlobalStyles";
 
 const ChooseExamAlert = ({ isVisible, onClose, message }) => {
@@ -11,7 +11,7 @@ const ChooseExamAlert = ({ isVisible, onClose, message }) => {
     <View style={styles.container}>
       <View style={styles.card}>
         <LottieView
-          source={loadingAnimation} // Replace with your animation JSON file
+          source={AssetPath.ins} // Replace with your animation JSON file
           autoPlay
           loop={true}
           style={styles.animation}

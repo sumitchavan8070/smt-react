@@ -63,12 +63,13 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import AssetPath from "../../lib/utility/constants/asset_path";
 
 const RazorpayPaymentAlert = ({ visible, message, onClose, isSuccess }) => {
   // Set the image based on success or failure
   const imageSource = isSuccess
-    ? require("../../assets/success.png") // Path to your success image
-    : require("../../assets/cancel.png"); // Path to your failed image
+    ? AssetPath.success // Path to your success image
+    : AssetPath.cancel; // Path to your failed image
 
   return (
     <Modal

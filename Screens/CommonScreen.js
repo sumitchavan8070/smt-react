@@ -14,7 +14,7 @@ import axios from "axios";
 import LeaderboardPage from "./LeaderboardPage";
 import CustomTest from "./CustomTest";
 import { useFocusEffect } from "@react-navigation/native";
-import socketServices from "../utils/constants/sockertService";
+import socketServices from "../lib/utility/constants/sockertService";
 import { AuthContext } from "../Context/authContext";
 import HeaderMenu from "../Components/Menus/HeaderMenu";
 

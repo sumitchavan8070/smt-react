@@ -28,7 +28,7 @@ import HeaderMenu from "../Components/Menus/HeaderMenu";
 import { Color } from "../GlobalStyles";
 import CreatedTestComponent from "../Components/HistoryComp/CreatedTestComponent";
 import LottieView from "lottie-react-native";
-import loadingAnimation from "../assets/boyalarm.json";
+import AssetPath from "../lib/utility/constants/asset_path";
 import GroupSelectionModal from "../Components/Group/GroupSelectionModal";
 import axios from "axios";
 import * as Print from "expo-print";
@@ -392,7 +392,7 @@ const History = () => {
             }}
           >
             <LottieView
-              source={loadingAnimation} // Replace with your animation JSON file
+              source={AssetPath.boyalarm} // Replace with your animation JSON file
               autoPlay
               loop={true}
               style={styles.animation}

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import LottieView from "lottie-react-native";
-import loadingAnimation from "../../assets/loader.json";
+import AssetPath from "../../lib/utility/constants/asset_path";
 import { Color } from "../../GlobalStyles";
 
 const LoadingAnimation = ({ visible, loop }) => {
@@ -11,7 +11,7 @@ const LoadingAnimation = ({ visible, loop }) => {
     <View style={styles.overlay}>
       <View style={styles.container}>
         <LottieView
-          source={loadingAnimation} // Replace with your animation JSON file
+          source={AssetPath.loader} // Replace with your animation JSON file
           autoPlay
           loop={loop}
           style={styles.animation}

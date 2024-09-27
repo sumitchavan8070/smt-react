@@ -9,7 +9,7 @@ import React from "react";
 import { examData } from "../../data/CategoriesData";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
-import { Border, Color, FontSize } from "../../GlobalStyles";
+import { Border, Color } from "../../GlobalStyles";
 import { Image } from "expo-image";
 
 const Categories = () => {

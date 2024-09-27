@@ -11,7 +11,7 @@ import axios from "axios";
 import PaperCardsContainer from "./PaperCardsContainer";
 import { Color } from "../../GlobalStyles";
 
-import loadingAnimation from "../../assets/girl.json";
+import AssetPath from "../../lib/utility/constants/asset_path";
 import LottieView from "lottie-react-native";
 import PrimaryButton from "../Forms/PrimaryButton";
 import LoadingAnimation from "../Loader/loader";
@@ -65,7 +65,7 @@ const QuestionPaperCardPage = ({ route }) => {
         ) : (
           <ScrollView contentContainerStyle={styles.container}>
             <LottieView
-              source={loadingAnimation}
+              source={AssetPath.girl}
               autoPlay
               loop={true}
               style={styles.animation}

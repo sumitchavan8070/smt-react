@@ -31,7 +31,7 @@ import axios from "axios";
 import CustomTestAlert from "../Components/Alert/CustomTestAlert";
 import LoadingAnimation from "../Components/Loader/loader";
 
-import loadingAnimation from "../assets/share.json";
+import AssetPath from "../lib/utility/constants/asset_path";
 import LottieView from "lottie-react-native";
 import DraggableFlatList, {
   NestableDraggableFlatList,
@@ -1338,7 +1338,7 @@ const CustomTestPage = () => {
                       Please Follow Instructions
                     </Text> */}
                       <LottieView
-                        source={loadingAnimation}
+                        source={AssetPath.share}
                         autoPlay
                         loop={true}
                         style={styles.animation}

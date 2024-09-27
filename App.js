@@ -3,7 +3,7 @@ import RouteNavigation from "./RouteNavigation";
 import { NavigationContainer } from "@react-navigation/native";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { GlobalRefreshProvider } from "./Context/GlobalRefreshContext";
-import { requestUserPermission } from "./utils/constants/notificationService";
+import { requestUserPermission } from "./lib/utility/constants/notificationService";
 
 import { useColorScheme } from "react-native";
 import { DefaultTheme } from "@react-navigation/native";
