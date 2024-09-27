@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Home from "../../lib/dashboard_module/view/Home";
+import Home from "../../lib/dashboard_module/view/home_view";
 import Register from "../../lib/authentication_module/view/sign_in_view";
 import Login from "../../lib/authentication_module/view/login_view";
 import { AuthContext } from "../../Context/authContext";
-import Blog from "../../lib/dashboard_module/view/Blog";
-import History from "../../Screens/History";
-import Profile from "../../lib/dashboard_module/view/Profile";
+import Blog from "../../lib/dashboard_module/view/blog_view";
+import History from "../../lib/dashboard_module/view/history_view";
+import Profile from "../../lib/dashboard_module/view/profile_view";
 import ExamDetailPage from "../../Screens/ExamDetailPage";
 import ViewAll from "../../Screens/ViewAll";
 import ChooseExam from "../../Screens/ChooseExam";

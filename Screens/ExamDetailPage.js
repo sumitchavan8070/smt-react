@@ -17,7 +17,7 @@ import PDFViewer from "../Components/PDF/PDFViewer";
 import { useNavigation } from "@react-navigation/native";
 import RNFS from "react-native-fs";
 import IosAlertWithImage from "../Components/Alert/IosAlertWithImage";
-import LoadingAnimation from "../Components/Loader/loader";
+import LoadingAnimation from "../lib/utility/constants/loader";
 import { Color } from "../GlobalStyles";
 import LottieView from "lottie-react-native";
 import AssetPath from "../lib/utility/constants/asset_path";

@@ -15,7 +15,7 @@ import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import LoadingAnimation from "../Loader/loader";
+import LoadingAnimation from "../../lib/utility/constants/loader";
 
 const FeedbackForm = () => {
   const [feedback, setFeedback] = useState("");

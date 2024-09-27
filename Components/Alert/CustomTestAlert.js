@@ -17,7 +17,7 @@ import LottieView from "lottie-react-native";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import LoadingAnimation from "../Loader/loader";
+import LoadingAnimation from "../../lib/utility/constants/loader";
 import { AntDesign } from "@expo/vector-icons";
 
 const CustomTestAlert = ({

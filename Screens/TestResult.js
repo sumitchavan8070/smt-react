@@ -14,7 +14,6 @@ import { AuthContext } from "../Context/authContext";
 import { PieChart } from "react-native-gifted-charts";
 import HeaderMenu from "../Components/Menus/HeaderMenu";
 import { LinearGradient } from "expo-linear-gradient";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { Color } from "../GlobalStyles";
 import AssetPath from "../lib/utility/constants/asset_path";
 

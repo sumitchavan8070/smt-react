@@ -11,7 +11,7 @@ import InputBox from "../Forms/InputBox";
 import { Color } from "../../GlobalStyles";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
-import LoadingAnimation from "../Loader/loader";
+import LoadingAnimation from "../../lib/utility/constants/loader";
 import { LinearGradient } from "expo-linear-gradient";
 import { setGestureState } from "react-native-reanimated";
 import AsyncStorage from "@react-native-async-storage/async-storage";

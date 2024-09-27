@@ -13,7 +13,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import axios from "axios";
 import CreateGroupModel from "../Components/Group/CreateGroupModel";
 import { Color } from "../GlobalStyles";
-import LoadingAnimation from "../Components/Loader/loader";
+import LoadingAnimation from "../lib/utility/constants/loader";
 import LottieView from "lottie-react-native";
 import AssetPath from "../lib/utility/constants/asset_path";
 

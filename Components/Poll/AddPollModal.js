@@ -12,7 +12,6 @@
 // // // import { FontAwesome5 } from "@expo/vector-icons"; // Import FontAwesome5 for check mark icon
 // // // import { Color } from "../../GlobalStyles";
 // // // import PostAlert from "../Alert/PostAlert";
-// // // import LoadingAnimation from "../Loader/loader";
 
 // // // const AddPollModal = ({ visible, onClose, onAddPoll }) => {
 // // //   const [question, setQuestion] = useState("");
@@ -251,7 +250,6 @@
 // // // import { FontAwesome5 } from "@expo/vector-icons";
 // // // import { Color } from "../../GlobalStyles";
 // // // import PostAlert from "../Alert/PostAlert";
-// // // import LoadingAnimation from "../Loader/loader";
 
 // // // const AddPollModal = ({ visible, onClose, onAddPoll }) => {
 // // //   const [question, setQuestion] = useState("");
@@ -490,7 +488,6 @@
 // // import { FontAwesome5 } from "@expo/vector-icons";
 // // import { LinearGradient } from "expo-linear-gradient";
 // // import PostAlert from "../Alert/PostAlert";
-// // import LoadingAnimation from "../Loader/loader";
 
 // // const AddPollModal = ({ visible, onClose, onAddPoll }) => {
 // //   const [question, setQuestion] = useState("");
@@ -758,7 +755,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import LoadingAnimation from "../Loader/loader";
+import LoadingAnimation from "../../lib/utility/constants/loader";
 import PostAlert from "../Alert/PostAlert";
 import MessageAlert from "../Alert/MessageAlert";
 

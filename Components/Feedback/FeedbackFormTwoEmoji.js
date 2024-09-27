@@ -12,7 +12,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import LoadingAnimation from "../Loader/loader";
+import LoadingAnimation from "../../lib/utility/constants/loader";
 
 const FeedbackFormTwoEmoji = () => {
   const [feedback, setFeedback] = useState("");

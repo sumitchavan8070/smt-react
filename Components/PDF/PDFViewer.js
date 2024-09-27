@@ -145,7 +145,7 @@ import Pdf from "react-native-pdf";
 import { FontAwesome } from "@expo/vector-icons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Color } from "../../GlobalStyles";
-import LoadingAnimation from "../Loader/loader";
+import LoadingAnimation from "../../lib/utility/constants/loader";
 
 const PDFViewer = ({ pdfFiles, handleDownlaodPdf }) => {
   const [expandedIndex, setExpandedIndex] = useState(0);

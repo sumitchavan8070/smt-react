@@ -14,7 +14,7 @@ import { Bubble, GiftedChat } from "react-native-gifted-chat";
 import socketServices from "../lib/utility/constants/sockertService";
 import { Feather } from "@expo/vector-icons";
 import CustomInputToolbar from "../Components/Group/CustomInputToolbar";
-import LoadingAnimation from "../Components/Loader/loader";
+import LoadingAnimation from "../lib/utility/constants/loader";
 import ChooseExamAlertSuccess from "../Components/Alert/ChooseExamAlertSuccess";
 
 const limit = 50;

@@ -29,7 +29,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import PrimaryButton from "../Components/Forms/PrimaryButton";
 import axios from "axios";
 import CustomTestAlert from "../Components/Alert/CustomTestAlert";
-import LoadingAnimation from "../Components/Loader/loader";
+import LoadingAnimation from "../lib/utility/constants/loader";
 
 import AssetPath from "../lib/utility/constants/asset_path";
 import LottieView from "lottie-react-native";

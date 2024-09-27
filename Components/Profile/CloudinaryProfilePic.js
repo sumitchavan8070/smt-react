@@ -2,8 +2,7 @@ import React from "react";
 import { SafeAreaView } from "react-native";
 import { AdvancedImage } from "cloudinary-react-native";
 import { Cloudinary } from "@cloudinary/url-gen";
-import { Color } from "../../GlobalStyles";
-import { Image } from "expo-image";
+
 
 const CloudinaryProfilePic = ({ publicId }) => {
   const cld = new Cloudinary({

@@ -12,7 +12,7 @@ import {
 import { Color } from "../../GlobalStyles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import LoadingAnimation from "../Loader/loader";
+import LoadingAnimation from "../../lib/utility/constants/loader";
 import { FontAwesome5 } from "@expo/vector-icons"; // Assuming you're using Expo
 import { useNavigation } from "@react-navigation/native";
 

@@ -6,7 +6,7 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
-import LoadingAnimation from "../Components/Loader/loader";
+import LoadingAnimation from "../lib/utility/constants/loader";
 import { getExamCatList } from "../Api/examCatApi";
 import { Color } from "../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";

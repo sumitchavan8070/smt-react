@@ -14,7 +14,7 @@ import axios from "axios";
 import SecoundaryHeader from "../Components/Menus/SecoundaryHeader";
 import { Color } from "../GlobalStyles";
 import CreateTestPage from "./CreateTestPage";
-import LoadingAnimation from "../Components/Loader/loader";
+import LoadingAnimation from "../lib/utility/constants/loader";
 import ChooseExamAlert from "../Components/Alert/ChooseExamAlert";
 import ChooseExamAlertSuccess from "../Components/Alert/ChooseExamAlertSuccess";
 import AsyncStorage from "@react-native-async-storage/async-storage";

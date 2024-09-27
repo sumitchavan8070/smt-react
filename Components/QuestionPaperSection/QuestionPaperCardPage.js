@@ -14,7 +14,7 @@ import { Color } from "../../GlobalStyles";
 import AssetPath from "../../lib/utility/constants/asset_path";
 import LottieView from "lottie-react-native";
 import PrimaryButton from "../Forms/PrimaryButton";
-import LoadingAnimation from "../Loader/loader";
+import LoadingAnimation from "../../lib/utility/constants/loader";
 import { useNavigation } from "@react-navigation/native";
 import HeaderMenu from "../Menus/HeaderMenu";
 
