@@ -25,7 +25,7 @@ const SummaryPage = ({ route }) => {
     totalTime,
     historyPageData,
   } = route.params;
-  const navigation = useNavigation(); // Initialize navigation hook
+  const navigation = useNavigation(); 
   const [state, setState] = useContext(AuthContext);
 
   let correctAnswersCount = 0;
@@ -105,7 +105,6 @@ const SummaryPage = ({ route }) => {
     return /<[a-z][\s\S]*>/i.test(text);
   };
 
-  // Utility function to check if the content is an image URL
   const isImageUrl = (url) => {
     return url?.match(/\.(jpeg|jpg|gif|png)$/) != null;
   };

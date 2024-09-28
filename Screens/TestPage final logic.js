@@ -10,6 +10,7 @@ import {
   ImageBackground,
   useWindowDimensions,
   StatusBar,
+  Image
 } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import * as ScreenOrientation from "expo-screen-orientation";
@@ -25,7 +26,6 @@ import {
 } from "react-native-gesture-handler";
 
 import aboutImage from "../assets/mpsc.jpeg"; // Import your local image
-import { Image } from "expo-image";
 import HTML from "react-native-render-html";
 import { ReactNativeZoomableView } from "@openspacelabs/react-native-zoomable-view";
 

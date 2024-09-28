@@ -16,7 +16,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Bubble, GiftedChat } from "react-native-gifted-chat";
 import socketServices from "../lib/utility/constants/sockertService";
 import { Feather } from "@expo/vector-icons";
-
+import AssetPath from "../lib/utility/constants/asset_path";
 const GroupChatPage = ({ route }) => {
   const navigation = useNavigation();
 
@@ -122,7 +122,7 @@ const GroupChatPage = ({ route }) => {
       </TouchableOpacity>
 
       <ImageBackground
-        source={require("../assets/wtsback.png")}
+        source={AssetPath.wtsback}
         style={styles.imageBackground}
       >
         <GiftedChat

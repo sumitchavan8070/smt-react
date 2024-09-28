@@ -14,7 +14,6 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 
 const ChooseExamAlertSuccess = ({
   isVisible,
-  // onInstructions,
   onSkipIntructions,
   message,
   onClose,

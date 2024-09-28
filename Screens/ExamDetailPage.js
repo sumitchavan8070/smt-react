@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { getExamCatList } from "../Api/examCatApi";
+import getExamCatList from "../lib/dashboard_module/controller/get_exam_cat_list_controller";
 import SecoundaryHeader from "../Components/Menus/SecoundaryHeader";
 import PDFViewer from "../Components/PDF/PDFViewer";
 import { useNavigation } from "@react-navigation/native";
@@ -133,7 +133,7 @@ const ExamDetailPage = ({ route }) => {
         return false;
       }
     } else {
-      return true; // For iOS, permissions are usually handled automatically
+      return true; 
     }
   };
 

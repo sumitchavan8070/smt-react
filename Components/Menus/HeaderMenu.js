@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity , Image} from "react-native";
 import React, { useEffect, useState } from "react";
 import { Color, FontSize } from "../../GlobalStyles";
-import { Image } from "expo-image";
 import { AuthContext } from "../../Context/authContext";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";

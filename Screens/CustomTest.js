@@ -30,6 +30,8 @@ import PrimaryButton from "../Components/Forms/PrimaryButton";
 import axios from "axios";
 import CustomTestAlert from "../Components/Alert/CustomTestAlert";
 import LoadingAnimation from "../lib/utility/constants/loader";
+import SharePdf from 'react-native-share';
+
 
 import AssetPath from "../lib/utility/constants/asset_path";
 import LottieView from "lottie-react-native";
@@ -40,7 +42,6 @@ import DraggableFlatList, {
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Watermark from "../Components/BetaBanner/Watermark";
 import * as Print from "expo-print";
-import { shareAsync } from "expo-sharing";
 import { LinearGradient } from "expo-linear-gradient";
 import HTML from "react-native-render-html";
 import ChooseExamUpdated from "./examDropdown/ChooseExamUpdated";
@@ -878,7 +879,14 @@ const CustomTestPage = () => {
 
     const { uri } = await Print.printToFileAsync({ html });
     console.log("File has been saved to:", uri);
-    await shareAsync(uri, { UTI: ".pdf", mimeType: "application/pdf" });
+    const options = {
+      title: 'Share PDF',
+      url: `file://${uri}`, // Ensure to use 'file://' prefix
+      type: 'application/pdf',
+    };
+
+      await SharePdf.open(options);
+    
   };
 
   const selectPrinter = async () => {

@@ -25,8 +25,7 @@ const AddMemberModel = ({ onClose, groupId }) => {
   const navigation = useNavigation();
 
   const handleSearch = async () => {
-    // try {
-    //   if (searchQuery.trim() !== "") {
+    
     const data = await AsyncStorage.getItem("@auth");
     let loginData = JSON.parse(data);
     let username = loginData.user.username;

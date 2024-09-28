@@ -5,8 +5,8 @@ import {
   TouchableOpacity,
   StyleSheet,
   TouchableWithoutFeedback,
+  Image
 } from "react-native";
-import { Image } from "expo-image";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { Color } from "../../GlobalStyles";
 import axios from "axios";

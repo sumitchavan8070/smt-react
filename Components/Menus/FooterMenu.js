@@ -1,5 +1,4 @@
 import React, { useMemo, memo } from "react";
-import { Image } from "expo-image";
 import {
   StyleSheet,
   View,

@@ -2,23 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import {
   View,
-  Text,
   StyleSheet,
-  TouchableOpacity,
-  ScrollView,
 } from "react-native";
 import { Color } from "../GlobalStyles";
 import GroupPage from "./GroupPage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import LeaderboardPage from "./LeaderboardPage";
 import CustomTest from "./CustomTest";
 import { useFocusEffect } from "@react-navigation/native";
-import socketServices from "../lib/utility/constants/sockertService";
 import { AuthContext } from "../Context/authContext";
 import HeaderMenu from "../Components/Menus/HeaderMenu";
 
-const Tab = createMaterialTopTabNavigator(); // Create a Tab navigator using createMaterialTopTabNavigator
+const Tab = createMaterialTopTabNavigator();
 
 const CommonScreen = () => {
   const [activeTab, setActiveTab] = useState("groups");

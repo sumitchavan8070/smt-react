@@ -16,7 +16,7 @@ import SummaryPage from "../../Screens/SummaryPage";
 import CreateTestPage from "../../Screens/CreateTestPage";
 import InstructionPage from "../../Screens/InstructionPage";
 import GroupPage from "../../Screens/GroupPage";
-import GroupChatPage from "../../Screens/GroupChatPage";
+import GroupChatPage from "../../lib/conversation_module/view/group_chat_view";
 import CommonScreen from "../../Screens/CommonScreen";
 import CustomTestPage from "../../Screens/CustomTest";
 import YearCardsPage from "../QuestionPaperSection/YearCardsPage";

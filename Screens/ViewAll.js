@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import LoadingAnimation from "../lib/utility/constants/loader";
-import { getExamCatList } from "../Api/examCatApi";
+import getExamCatList from "../lib/dashboard_module/controller/get_exam_cat_list_controller";
 import { Color } from "../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 
@@ -27,7 +27,7 @@ const ViewAllPage = ({}) => {
     if (categoriesData.length === 0) {
       fetchData();
     }
-  }, [categoriesData]); // Empty dependency array ensures useEffect runs only once when the component mounts
+  }, [categoriesData]); 
 
   const handleMoreButton = (_id) => {
     navigation.navigate("ExamDetail", { _id: _id });
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   gridItem: {
     width: "48%",
-    aspectRatio: 1, // This maintains a square aspect ratio for each item
+    aspectRatio: 1, 
     marginBottom: 10,
     borderRadius: 10,
     overflow: "hidden",

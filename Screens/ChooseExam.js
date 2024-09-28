@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {
   ScrollView,
-  Text,
   StyleSheet,
-  ActivityIndicator,
-  View,
 } from "react-native";
-import CustomAlert from "../Components/Alert/CustomAlertPort";
-import ChooseExamDropdown from "../Components/Dropdown/ChooseExamDropdown";
 import PrimaryButton from "../Components/Forms/PrimaryButton";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import axios from "axios";
-import SecoundaryHeader from "../Components/Menus/SecoundaryHeader";
 import { Color } from "../GlobalStyles";
 import CreateTestPage from "./CreateTestPage";
 import LoadingAnimation from "../lib/utility/constants/loader";
@@ -22,27 +16,19 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const ChooseExam = ({}) => {
   const navigation = useNavigation();
 
-  // const route = useRoute(); // Get the route object
-  // const { detailPageValue } = route.params; // Destructure _id from params
-  // const [selectedExamCategory, setSelectedExamCategory] = useState(
-  //   detailPageValue._id
-  // ); // Set default value
 
-  const route = useRoute(); // Get the route object
-  const { detailPageValue } = route.params || {}; // Destructure _id from params or use an empty object if params is undefined
+
+  const route = useRoute(); 
+  const { detailPageValue } = route.params || {}; 
   const [selectedExamCategory, setSelectedExamCategory] = useState(
-    detailPageValue && detailPageValue._id ? detailPageValue._id : null // Check if detailPageValue and detailPageValue._id exist before accessing _id
-  );
+    detailPageValue && detailPageValue._id ? detailPageValue._id : null );
 
   useEffect(() => {
     if (!detailPageValue || !detailPageValue._id) {
-      setSelectedExamCategory(null); // Update selectedExamCategory to null if detailPageValue or detailPageValue._id is not found
+      setSelectedExamCategory(null); 
     }
   }, [detailPageValue]);
 
-  // const [selectedExam, setSelectedExam] = useState("");
-  // const [selectedSubExam, setSelectedSubExam] = useState("");
-  // const [selectedYear, setSelectedYear] = useState("");
   const [questionData, setQuestionData] = useState([]);
   const [testId, setTestId] = useState("");
   const [loading, setLoading] = useState(false);
@@ -52,7 +38,6 @@ const ChooseExam = ({}) => {
   const [showAlertTest, setShowAlertTest] = useState(false);
   const [alertMessageTest, setAlertMessageTest] = useState("");
 
-  // const [selectedExamCategory, setSelectedExamCategory] = useState("");
 
   const [selectedSubExamType, setSelectedSubExamType] = useState("");
   const [selectedExamYear, setSelectedExamYear] = useState("");
@@ -61,14 +46,6 @@ const ChooseExam = ({}) => {
   const [selectedTimer, setSelectedTimer] = useState("1");
 
   const onSubmitChooseExam = async () => {
-    // if (!selectedExam || !selectedSubExam || !selectedYear) {
-    //   alert("Please select all options");
-    //   return;
-    // // }
-    // console.log("selectedExamCategory" + selectedExamCategory);
-    // console.log("selectedSubExamType" + selectedSubExamType);
-    // console.log("selectedExamYear" + selectedExamYear);
-    // console.log("selectedTimer" + selectedTimer);
 
     if (!selectedExamCategory) {
       alert("Please select an exam category");
@@ -119,36 +96,26 @@ const ChooseExam = ({}) => {
         })
       );
 
-      // console.log("===> My data ==>" + JSON.stringify(myTestData));
 
       const dataAuth = await AsyncStorage.getItem("@auth");
       const loginData = JSON.parse(dataAuth);
       const creatorId = loginData.user._id;
       const creatorName = loginData.user.name;
 
-      // Send POST request with combinedQuestions
       const responseMainTest = await axios.post("/question-papers/main-test", {
         testName: selectedExamCategory,
         totalQuestions: myTestData.length,
-        passingMarks: 0, // You can set this as required
+        passingMarks: 0,  
         creatorId: creatorId,
         questions: myTestData,
       });
 
-      // console.log(
-      //   "=======QuestionPaper Data====== " +
-      //     JSON.stringify(responseMainTest.data.data)
-      // );
-      // console.log(
-      //   "=======QuestionPaper Data====== " + responseMainTest.data.data
-      // );
+
 
       setQuestionData(responseMainTest.data.data.questions);
       setTestId(responseMainTest.data.data.testId);
-      // console.log("QuestionPaper Data " + JSON.stringify(data));
       setShowAlertTest(true);
       setAlertMessageTest("Quick Tips: There are no Tips. Best of luck!");
-      //===============when we are changing this message please do the changes in papercardcontainer in components question paper section ===
     } catch (error) {
       console.error("Error fetching question paper:", error);
       setShowAlert(true);

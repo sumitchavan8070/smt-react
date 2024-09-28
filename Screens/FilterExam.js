@@ -1,8 +1,7 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
-import ChooseExam from "./ChooseExam";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { Color, Padding } from "../GlobalStyles";
+import { Color } from "../GlobalStyles";
 import SubjectFilter from "../Components/FilterExam/SubjectFilter";
 import TopicFilter from "../Components/FilterExam/TopicFilter";
 import ChooseExamUpdated from "./examDropdown/ChooseExamUpdated";

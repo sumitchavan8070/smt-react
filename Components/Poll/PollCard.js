@@ -5,13 +5,13 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  Image
 } from "react-native";
 import LottieView from "lottie-react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import AssetPath from "../../lib/utility/constants/asset_path";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Image } from "expo-image";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { Color } from "../../GlobalStyles";
 
