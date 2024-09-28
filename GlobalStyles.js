@@ -17,7 +17,7 @@ export const FontSize = {
 /* Colors */
 export const Color = {
   colorWhite: "#ffffff",
-  primaryColor: "#6949ff",
+  primaryColor: "#066AC9",
   secoundaryBtnColor: "#efedfe",
   red: "#f75555",
   colorGray: "rgba(0, 0, 0, 0.2)",

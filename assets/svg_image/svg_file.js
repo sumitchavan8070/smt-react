@@ -1,7 +1,7 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
 
- function UnderMaintenanceSVG(props) {
+ export function   UnderMaintenanceSVG(props) {
   return (
     <Svg
       width={1080}
@@ -315,4 +315,41 @@ import Svg, { Path } from "react-native-svg"
   )
 }
 
-export default SvgComponent
+
+function MenuIconSVG(props) {
+  return (
+    <Svg
+      width={41}
+      height={40}
+      viewBox="0 0 41 40"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <Rect
+        x={0.5}
+        width={40}
+        height={40}
+        rx={10}
+        fill="#066AC9"
+        fillOpacity={0.1}
+      />
+      <Path
+        d="M12.25 14.75h16.5M12.25 20h16.5m-16.5 5.25h8.25"
+        stroke="#066AC9"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  ); 
+}
+
+
+
+
+export default {
+  UnderMaintenanceSVG, 
+  MenuIconSVG,
+  
+};
