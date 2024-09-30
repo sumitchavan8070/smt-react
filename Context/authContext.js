@@ -18,7 +18,11 @@ const AuthProvider = ({ children }) => {
     const loadLoaclStorageData = async () => {
       let data = await AsyncStorage.getItem("@auth");
 
-      let loginData = JSON.parse(data);
+      let rawData = JSON.stringify(data);
+      let loginData = JSON.parse(rawData);
+        
+      console.log(`loginData : ${loginData}`);
+      console.error(`appUser : ${loginData?.data.user}`); 
 
       setState({ ...state, user: loginData?.user, token: loginData?.token });
     };

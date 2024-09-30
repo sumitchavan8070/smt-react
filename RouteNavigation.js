@@ -1,10 +1,10 @@
 import React from "react";
 import { AuthProvider } from "./Context/authContext";
 import ScreenMenu from "./Components/Menus/ScreenMenu";
+// import ScreenMenu from "./lib/utility/navigaton/routes";
 
 const RouteNavigation = () => {
   return (
-    //      {/* to manage global state of the application we will use auth provider */}
 
     <AuthProvider>
       <ScreenMenu></ScreenMenu>
